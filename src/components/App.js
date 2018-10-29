@@ -133,14 +133,14 @@ class App extends Component {
   }
 
   updateTrackName = (e) => {
-    document.removeEventListener('keydown', this.handleKeyPress);
     this.setState({ trackName: e.target.value });
   }
 
   addNewTrack = (e) => {
     e.preventDefault();
     const tracks = { ...this.state.tracks };
-    if (_.find(tracks, this.state.trackName)) { alert('name already taken!'); return; }
+    if (_.find(tracks, this.state.trackName)) { alert('Name already taken!'); return; }
+    if (this.state.trackName.length > 8) { alert('Name too long! Max 8 char'); return; }
     this.setState({ trackName: '', tracks: { ...this.state.tracks, [this.state.trackName]: { name: this.state.trackName, audio: [] } } });
   }
 
@@ -157,7 +157,7 @@ class App extends Component {
           <div className='track-list'>
             {trackControl}
             <form className='track-name-form' onSubmit={this.addNewTrack}>
-              <input value={this.state.trackName} onChange={this.updateTrackName} type='text' placeholder='Add new track' />
+              <input value={this.state.trackName} onChange={this.updateTrackName} type='text' placeholder='Create new track' />
             </form>
           </div>
           <div id='display' className='display'>

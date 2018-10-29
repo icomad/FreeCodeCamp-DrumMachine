@@ -242,10 +242,41 @@ header{
   grid-gap: 10px;
 }
 .controls{
+  border: 1px solid rgba(0,0,0,.3);
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  "track-name record stop play pause delete" 
+  "seconds seconds seconds seconds seconds seconds";
+
+  div{
+    text-align: center;
+  }
+}
+#record{
+  grid-area: record;
+}
+#stop{
+  grid-area: stop;
+}
+#play{
+  grid-area: play;
+}
+#pause{
+  grid-area: pause;
+}
+#delete{
+  grid-area: delete;
+}
+#track-name{
+  grid-area: track-name;
+}
+#seconds{
+  grid-area: seconds;
 }
 .control-button{
   cursor: pointer;
@@ -253,6 +284,9 @@ header{
   &:hover{
     color: $red;
   }
+}
+.control-button-active{
+  color: $purple;
 }
 
 .track-name-form{
@@ -271,10 +305,114 @@ header{
   }
 }
 
+.beat-input{
+  padding: 5px;
+  font-size: .8em;
+  background: transparent;
+  border: none;
+  &:focus{
+    outline: none;
+    border: 1px solid orangered;
+  }
+}
+
+input[type=range].beat {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 0.7px 0;
+}
+input[type=range].beat:focus {
+  outline: none;
+}
+input[type=range].beat::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #484d4d;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+input[type=range].beat::-webkit-slider-thumb {
+  box-shadow: 0px 0px 1px #670000, 0px 0px 0px #810000;
+  border: 0px solid #ff1e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: orangered;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -0.7px;
+}
+input[type=range].beat:focus::-webkit-slider-runnable-track {
+  background: #545a5a;
+}
+input[type=range].beat::-moz-range-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #484d4d;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+input[type=range].beat::-moz-range-thumb {
+  box-shadow: 0px 0px 1px #670000, 0px 0px 0px #810000;
+  border: 0px solid #ff1e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: orangered;
+  cursor: pointer;
+}
+input[type=range].beat::-ms-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].beat::-ms-fill-lower {
+  background: #3c4040;
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range].beat::-ms-fill-upper {
+  background: #484d4d;
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range].beat::-ms-thumb {
+  box-shadow: 0px 0px 1px #670000, 0px 0px 0px #810000;
+  border: 0px solid #ff1e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: orangered;
+  cursor: pointer;
+  height: 25.6px;
+}
+input[type=range].beat:focus::-ms-fill-lower {
+  background: #484d4d;
+}
+input[type=range].beat:focus::-ms-fill-upper {
+  background: #545a5a;
+}
+
+
 
 @media screen and (min-width: 768px){
   .container{
     max-width: 650px;
+  }
+  .controls{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "track-name record stop seconds"
+    "play pause delete seconds";
   }
 }
 
